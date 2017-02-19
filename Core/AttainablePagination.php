@@ -11,13 +11,13 @@ final class AttainablePagination implements Pagination {
 	private const BASE = 1;
 	private const MAX_LIMIT = 100;
 	private $current;
-	private $total;
 	private $limit;
+	private $total;
 
-	public function __construct(int $current, int $total, int $limit) {
+	public function __construct(int $current, int $limit, int $total) {
 		$this->current = $current;
-		$this->total = $total;
 		$this->limit = $limit;
+		$this->total = $total;
 	}
 
 	public function print(Output\Format $format): Output\Format {
