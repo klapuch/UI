@@ -45,11 +45,11 @@ final class AttainablePagination extends Tester\TestCase {
 		);
 	}
 
-	public function testFixedLimitConstraint() {
+	public function testNoLimitations() {
 		Assert::same(
-			'|first|1||last|20||current|1||previous|1||next|2|',
+			'|first|1||last|4||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				1, 98999, 2000
+				1, 5000, 20000
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}

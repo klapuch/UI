@@ -9,7 +9,6 @@ use Klapuch\Output;
  */
 final class AttainablePagination implements Pagination {
 	private const BASE = 1;
-	private const MAX_LIMIT = 100;
 	private $current;
 	private $limit;
 	private $total;
@@ -31,7 +30,7 @@ final class AttainablePagination implements Pagination {
 	}
 
 	private function limit(int $limit): int {
-		return max(min(self::MAX_LIMIT, $limit), 0);
+		return max($limit, 0);
 	}
 
 	private function last(int $total): int {
