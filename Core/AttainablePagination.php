@@ -12,18 +12,18 @@ final class AttainablePagination implements Pagination {
 	private $current;
 	private $perPage;
 	private $total;
-	private $maxLimit;
+	private $defaultLimit;
 
 	public function __construct(
 		int $current,
 		int $perPage,
 		int $total,
-		int $maxLimit = 100
+		int $defaultLimit = 100
 	) {
 		$this->current = $current;
 		$this->perPage = $perPage;
 		$this->total = $total;
-		$this->maxLimit = $maxLimit;
+		$this->defaultLimit = $defaultLimit;
 	}
 
 	public function print(Output\Format $format): Output\Format {
@@ -37,7 +37,7 @@ final class AttainablePagination implements Pagination {
 	}
 
 	private function limit(int $perPage): int {
-		return min($this->maxLimit, $perPage) ?: $this->maxLimit;
+		return min($this->defaultLimit, $perPage) ?: $this->defaultLimit;
 	}
 
 	private function last(int $total): int {
