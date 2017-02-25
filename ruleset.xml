@@ -31,6 +31,8 @@
 		<exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets" />       
 		<exclude name="Squiz.PHP.DisallowInlineIf.Found" />       
 		<exclude name="Squiz.ControlStructures.InlineIfDeclaration.NoBrackets" />       
+		<exclude name="Squiz.ControlStructures.InlineIfDeclaration.SpacingAfterThen" />       
+		<exclude name="Squiz.ControlStructures.InlineIfDeclaration.SpacingBeforeElse" />       
 	</rule>
 	<rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
 		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces" />
