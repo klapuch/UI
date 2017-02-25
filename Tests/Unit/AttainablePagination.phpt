@@ -104,6 +104,15 @@ final class AttainablePagination extends Tester\TestCase {
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
+
+	public function testNoDivisionByZero() {
+		Assert::same(
+			'|first|1||last|20||current|1||previous|1||next|2|',
+			(new UI\AttainablePagination(
+				1, 0, 20
+			))->print(new Output\FakeFormat(''))->serialization()
+		);
+	}
 }
 
 

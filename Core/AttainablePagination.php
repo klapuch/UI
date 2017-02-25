@@ -30,7 +30,7 @@ final class AttainablePagination implements Pagination {
 	}
 
 	private function limit(int $limit): int {
-		return max($limit, 0);
+		return max($limit, self::BASE);
 	}
 
 	private function last(int $total): int {
