@@ -10,13 +10,20 @@ use Klapuch\Output;
 final class AttainablePagination implements Pagination {
 	private const BASE = 1;
 	private $current;
-	private $limit;
+	private $perPage;
 	private $total;
+	private $maxLimit;
 
-	public function __construct(int $current, int $limit, int $total) {
+	public function __construct(
+		int $current,
+		int $perPage,
+		int $total,
+		int $maxLimit = 100
+	) {
 		$this->current = $current;
-		$this->limit = $limit;
+		$this->perPage = $perPage;
 		$this->total = $total;
+		$this->maxLimit = $maxLimit;
 	}
 
 	public function print(Output\Format $format): Output\Format {
@@ -29,12 +36,12 @@ final class AttainablePagination implements Pagination {
 			->with('next', min($last, $current + 1));
 	}
 
-	private function limit(int $limit): int {
-		return max($limit, self::BASE);
+	private function limit(int $perPage): int {
+		return min($this->maxLimit, $perPage) ?: $this->maxLimit;
 	}
 
 	private function last(int $total): int {
-		return (int) ceil($total / $this->limit($this->limit));
+		return (int) ceil($total / $this->limit($this->perPage));
 	}
 
 	private function current(int $current): int {

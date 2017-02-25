@@ -45,11 +45,11 @@ final class AttainablePagination extends Tester\TestCase {
 		);
 	}
 
-	public function testNoLimitations() {
+	public function testAppliedMaxLimit() {
 		Assert::same(
-			'|first|1||last|4||current|1||previous|1||next|2|',
+			'|first|1||last|200||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				1, 5000, 20000
+				1, 5000, 20000, 100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -105,11 +105,11 @@ final class AttainablePagination extends Tester\TestCase {
 		);
 	}
 
-	public function testNoDivisionByZero() {
+	public function testUnrealLimitWithMaxLimitFallback() {
 		Assert::same(
-			'|first|1||last|20||current|1||previous|1||next|2|',
+			'|first|1||last|2||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				1, 0, 20
+				1, 0, 200, 100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
