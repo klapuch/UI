@@ -9,17 +9,17 @@ use Klapuch\Output;
  */
 final class LimitedPagination implements Pagination {
 	private $origin;
-	private $limit;
+	private $current;
 	private $max;
 
-	public function __construct(Pagination $origin, int $limit, int $max = 100) {
+	public function __construct(Pagination $origin, int $current, int $max = 100) {
 		$this->origin = $origin;
-		$this->limit = $limit;
+		$this->current = $current;
 		$this->max = $max;
 	}
 
 	public function print(Output\Format $format): Output\Format {
-		if($this->limit > $this->max) {
+		if($this->current > $this->max) {
 			throw new \OverflowException(
 				sprintf('Max limit %d has been overstepped', $this->max)
 			);

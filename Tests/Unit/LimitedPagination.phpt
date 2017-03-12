@@ -17,11 +17,11 @@ final class LimitedPagination extends Tester\TestCase {
 	/**
 	 * @dataProvider outOfRangeLimits
 	 */
-	public function testThrowingOnOverLimit(int $limit) {
-		Assert::exception(function() use($limit) {
+	public function testThrowingOnOverLimit(int $current) {
+		Assert::exception(function() use($current) {
 			(new UI\LimitedPagination(
 				new UI\FakePagination(),
-				$limit,
+				$current,
 				100
 			))->print(new Output\FakeFormat());
 		}, \OverflowException::class, 'Max limit 100 has been overstepped');
@@ -30,11 +30,11 @@ final class LimitedPagination extends Tester\TestCase {
 	/**
 	 * @dataProvider inRangeLimits
 	 */
-	public function testPassingWithLimitInRange(int $limit) {
-		Assert::noError(function() use($limit) {
+	public function testPassingWithLimitInRange(int $current) {
+		Assert::noError(function() use($current) {
 			(new UI\LimitedPagination(
 				new UI\FakePagination(),
-				$limit,
+				$current,
 				100
 			))->print(new Output\FakeFormat());
 		});
