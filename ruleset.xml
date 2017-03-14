@@ -20,6 +20,7 @@
 		<exclude name="PEAR" />       
 	</rule>
 	<rule ref="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz">
+		<exclude name="Squiz.PHP.DisallowBooleanStatement.Found" />       
 		<exclude name="Squiz.WhiteSpace" />       
 		<exclude name="Squiz.Objects" />       
 		<exclude name="Squiz.Classes" />       
