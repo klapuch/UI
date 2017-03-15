@@ -9,20 +9,20 @@ use Klapuch\Output;
  */
 final class PersistentFlashMessage implements FlashMessage {
 	private const IDENTIFIER = '_flashMessage';
-	private $sessions;
+	private $storage;
 
-	public function __construct(array &$sessions) {
-		$this->sessions = &$sessions;
+	public function __construct(array &$storage) {
+		$this->storage = &$storage;
 	}
 
 	public function flash(string $content, string $type): void {
-		$this->sessions[self::IDENTIFIER][] = [$type => $content];
+		$this->storage[self::IDENTIFIER][] = [$type => $content];
 	}
 
 	public function print(Output\Format $format): Output\Format {
-		if(!$this->printable($this->sessions))
+		if(!$this->printable($this->storage))
 			return $format;
-		$message = array_shift($this->sessions[self::IDENTIFIER]);
+		$message = array_shift($this->storage[self::IDENTIFIER]);
 		return $format->with('type', key($message))
 			->with('content', current($message));
 	}
