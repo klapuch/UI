@@ -20,7 +20,7 @@ final class PersistentFlashMessage implements FlashMessage {
 	}
 
 	public function print(Output\Format $format): Output\Format {
-		if(!$this->printable($this->storage))
+		if (!$this->printable($this->storage))
 			return $format;
 		$message = array_shift($this->storage[self::IDENTIFIER]);
 		return $format->with('type', key($message))

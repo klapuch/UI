@@ -6,8 +6,8 @@ declare(strict_types = 1);
  */
 namespace Klapuch\UI\Unit;
 
-use Klapuch\UI;
 use Klapuch\Output;
+use Klapuch\UI;
 use Tester;
 use Tester\Assert;
 

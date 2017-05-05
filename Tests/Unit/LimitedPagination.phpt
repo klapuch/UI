@@ -6,8 +6,8 @@ declare(strict_types = 1);
  */
 namespace Klapuch\UI\Unit;
 
-use Klapuch\UI;
 use Klapuch\Output;
+use Klapuch\UI;
 use Tester;
 use Tester\Assert;
 
@@ -18,7 +18,7 @@ final class LimitedPagination extends Tester\TestCase {
 	 * @dataProvider outOfRangeLimits
 	 */
 	public function testThrowingOnOverLimit(int $current) {
-		Assert::exception(function() use($current) {
+		Assert::exception(function() use ($current) {
 			(new UI\LimitedPagination(
 				new UI\FakePagination(),
 				$current,
@@ -31,7 +31,7 @@ final class LimitedPagination extends Tester\TestCase {
 	 * @dataProvider inRangeLimits
 	 */
 	public function testPassingWithLimitInRange(int $current) {
-		Assert::noError(function() use($current) {
+		Assert::noError(function() use ($current) {
 			(new UI\LimitedPagination(
 				new UI\FakePagination(),
 				$current,

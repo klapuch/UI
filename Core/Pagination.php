@@ -7,7 +7,7 @@ use Klapuch\Output;
 interface Pagination {
 	/**
 	 * Print the pagination
-	 * @param \Klapuch\Output\Format
+	 * @param \Klapuch\Output\Format $format
 	 * @return \Klapuch\Output\Format
 	 */
 	public function print(Output\Format $format): Output\Format;

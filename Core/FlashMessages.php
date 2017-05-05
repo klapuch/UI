@@ -20,7 +20,7 @@ final class FlashMessages implements FlashMessage {
 
 	public function print(Output\Format $format): Output\Format {
 		$messages = [];
-		while(($message = $this->origin->print($format)) !== $format) {
+		while (($message = $this->origin->print($format)) !== $format) {
 			$messages[] = $message;
 		}
 		return new Output\CombinedFormat(...$messages);

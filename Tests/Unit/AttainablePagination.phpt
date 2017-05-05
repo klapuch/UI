@@ -6,8 +6,8 @@ declare(strict_types = 1);
  */
 namespace Klapuch\UI\Unit;
 
-use Klapuch\UI;
 use Klapuch\Output;
+use Klapuch\UI;
 use Tester;
 use Tester\Assert;
 
@@ -22,7 +22,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|2||current|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				9, 50, 100
+				9,
+				50,
+				100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -31,7 +33,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|2||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				-3, 50, 100
+				-3,
+				50,
+				100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -40,7 +44,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|1||current|1||previous|1||next|1|',
 			(new UI\AttainablePagination(
-				1, 100, 9
+				1,
+				100,
+				9
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -49,7 +55,10 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|200||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				1, 5000, 20000, 100
+				1,
+				5000,
+				20000,
+				100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -58,7 +67,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|2||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				1, 50, 100
+				1,
+				50,
+				100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -70,7 +81,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|1||current|1||previous|1||next|1|',
 			(new UI\AttainablePagination(
-				1, 50, 50
+				1,
+				50,
+				50
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -79,7 +92,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|2||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				1, 50, 100
+				1,
+				50,
+				100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -91,7 +106,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|2||current|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				2, 50, 100
+				2,
+				50,
+				100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -100,7 +117,9 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|6||current|4||previous|3||next|5|',
 			(new UI\AttainablePagination(
-				4, 50, 262
+				4,
+				50,
+				262
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
@@ -109,7 +128,10 @@ final class AttainablePagination extends Tester\TestCase {
 		Assert::same(
 			'|first|1||last|2||current|1||previous|1||next|2|',
 			(new UI\AttainablePagination(
-				1, 0, 200, 100
+				1,
+				0,
+				200,
+				100
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}

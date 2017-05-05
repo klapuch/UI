@@ -19,7 +19,7 @@ final class LimitedPagination implements Pagination {
 	}
 
 	public function print(Output\Format $format): Output\Format {
-		if($this->current > $this->max) {
+		if ($this->current > $this->max) {
 			throw new \OverflowException(
 				sprintf('Max limit %d has been overstepped', $this->max)
 			);
