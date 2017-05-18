@@ -13,10 +13,10 @@ use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
 
-final class FlashMessages extends Tester\TestCase {
+final class UniqueFlashMessages extends Tester\TestCase {
 	public function testPrintingSingleMessage() {
 		$storage = [];
-		$messages = new UI\FlashMessages(new UI\PersistentFlashMessage($storage));
+		$messages = new UI\UniqueFlashMessages(new UI\PersistentFlashMessage($storage));
 		$messages->flash('wrong', 'error,');
 		Assert::same(
 			'error,wrong',
@@ -26,7 +26,7 @@ final class FlashMessages extends Tester\TestCase {
 
 	public function testNoMessageToPrintAsPassedFormat() {
 		$storage = [];
-		$messages = new UI\FlashMessages(new UI\PersistentFlashMessage($storage));
+		$messages = new UI\UniqueFlashMessages(new UI\PersistentFlashMessage($storage));
 		Assert::same(
 			'',
 			$messages->print(new Output\ArrayFormat([]))->serialization()
@@ -35,7 +35,7 @@ final class FlashMessages extends Tester\TestCase {
 
 	public function testPrintingAllFlashedMessages() {
 		$storage = [];
-		$messages = new UI\FlashMessages(new UI\PersistentFlashMessage($storage));
+		$messages = new UI\UniqueFlashMessages(new UI\PersistentFlashMessage($storage));
 		$messages->flash('fine - ', 'success,');
 		$messages->flash('wrong', 'error,');
 		Assert::same(
@@ -46,7 +46,7 @@ final class FlashMessages extends Tester\TestCase {
 
 	public function testPrintingUniqueMessages() {
 		$storage = [];
-		$messages = new UI\FlashMessages(new UI\PersistentFlashMessage($storage));
+		$messages = new UI\UniqueFlashMessages(new UI\PersistentFlashMessage($storage));
 		$messages->flash('|fine|', '|success|');
 		$messages->flash('|fine|', '|error|');
 		$messages->flash('|wrong|', '|error|');
@@ -58,4 +58,4 @@ final class FlashMessages extends Tester\TestCase {
 	}
 }
 
-(new FlashMessages())->run();
+(new UniqueFlashMessages())->run();

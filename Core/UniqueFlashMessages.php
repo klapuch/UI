@@ -5,9 +5,9 @@ namespace Klapuch\UI;
 use Klapuch\Output;
 
 /**
- * All flash messages
+ * Only unique flash messages
  */
-final class FlashMessages implements FlashMessage {
+final class UniqueFlashMessages implements FlashMessage {
 	private $origin;
 
 	public function __construct(FlashMessage $origin) {
