@@ -23,6 +23,6 @@ final class FlashMessages implements FlashMessage {
 		while (($message = $this->origin->print($format)) !== $format) {
 			$messages[] = $message;
 		}
-		return new Output\CombinedFormat(...$messages);
+		return new Output\CombinedFormat(...array_unique($messages, SORT_REGULAR));
 	}
 }

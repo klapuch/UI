@@ -43,6 +43,19 @@ final class FlashMessages extends Tester\TestCase {
 			$messages->print(new Output\ArrayFormat([]))->serialization()
 		);
 	}
+
+	public function testPrintingUniqueMessages() {
+		$storage = [];
+		$messages = new UI\FlashMessages(new UI\PersistentFlashMessage($storage));
+		$messages->flash('|fine|', '|success|');
+		$messages->flash('|fine|', '|error|');
+		$messages->flash('|wrong|', '|error|');
+		$messages->flash('|wrong|', '|error|');
+		Assert::same(
+			'|success||fine||error||fine||error||wrong|',
+			$messages->print(new Output\ArrayFormat([]))->serialization()
+		);
+	}
 }
 
 (new FlashMessages())->run();
