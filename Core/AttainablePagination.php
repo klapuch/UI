@@ -36,6 +36,10 @@ final class AttainablePagination implements Pagination {
 			->with('next', min($last, $current + 1));
 	}
 
+	public function range(): array {
+		return [self::BASE, $this->last($this->total)];
+	}
+
 	private function limit(int $perPage): int {
 		return min($this->defaultLimit, $perPage) ?: $this->defaultLimit;
 	}

@@ -26,4 +26,8 @@ final class LimitedPagination implements Pagination {
 		}
 		return $this->origin->print($format);
 	}
+
+	public function range(): array {
+		return $this->origin->range();
+	}
 }
