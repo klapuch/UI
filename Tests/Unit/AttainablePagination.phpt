@@ -135,6 +135,10 @@ final class AttainablePagination extends Tester\TestCase {
 			))->print(new Output\FakeFormat(''))->serialization()
 		);
 	}
+
+	public function testRangeFromTo() {
+		Assert::same([1, 20], (new UI\AttainablePagination(5, 10, 200))->range());
+	}
 }
 
 
