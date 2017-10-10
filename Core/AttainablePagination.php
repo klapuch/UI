@@ -32,7 +32,7 @@ final class AttainablePagination implements Pagination {
 		return $format->with('first', self::BASE)
 			->with('last', $last)
 			->with('current', $current)
-			->with('previous', max(self::BASE, $current - 1))
+			->with('prev', max(self::BASE, $current - 1))
 			->with('next', min($last, $current + 1));
 	}
 
