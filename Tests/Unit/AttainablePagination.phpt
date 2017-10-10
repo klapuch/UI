@@ -20,7 +20,7 @@ final class AttainablePagination extends Tester\TestCase {
 	 */
 	public function testCurrentOverTotalLimitFallingToLast() {
 		Assert::same(
-			'|first|1||last|2||current|2||previous|1||next|2|',
+			'|first|1||last|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
 				9,
 				50,
@@ -31,7 +31,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testCurrentUnderBaseLimitFallingToFirst() {
 		Assert::same(
-			'|first|1||last|2||current|1||previous|1||next|2|',
+			'|first|1||last|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
 				-3,
 				50,
@@ -42,7 +42,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testOversteppedLimitFallingEverythingToBegin() {
 		Assert::same(
-			'|first|1||last|1||current|1||previous|1||next|1|',
+			'|first|1||last|1||previous|1||next|1|',
 			(new UI\AttainablePagination(
 				1,
 				100,
@@ -53,7 +53,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testAppliedMaxLimit() {
 		Assert::same(
-			'|first|1||last|200||current|1||previous|1||next|2|',
+			'|first|1||last|200||previous|1||next|2|',
 			(new UI\AttainablePagination(
 				1,
 				5000,
@@ -65,7 +65,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testFirstPage() {
 		Assert::same(
-			'|first|1||last|2||current|1||previous|1||next|2|',
+			'|first|1||last|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
 				1,
 				50,
@@ -79,7 +79,7 @@ final class AttainablePagination extends Tester\TestCase {
 	 */
 	public function testFirstPageOnEdge() {
 		Assert::same(
-			'|first|1||last|1||current|1||previous|1||next|1|',
+			'|first|1||last|1||previous|1||next|1|',
 			(new UI\AttainablePagination(
 				1,
 				50,
@@ -90,7 +90,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testLastPage() {
 		Assert::same(
-			'|first|1||last|2||current|1||previous|1||next|2|',
+			'|first|1||last|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
 				1,
 				50,
@@ -104,7 +104,7 @@ final class AttainablePagination extends Tester\TestCase {
 	 */
 	public function testLastPageOnEdge() {
 		Assert::same(
-			'|first|1||last|2||current|2||previous|1||next|2|',
+			'|first|1||last|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
 				2,
 				50,
@@ -115,7 +115,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testLastPageRoundedUp() {
 		Assert::same(
-			'|first|1||last|6||current|4||previous|3||next|5|',
+			'|first|1||last|6||previous|3||next|5|',
 			(new UI\AttainablePagination(
 				4,
 				50,
@@ -126,7 +126,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testUnrealLimitWithMaxLimitFallback() {
 		Assert::same(
-			'|first|1||last|2||current|1||previous|1||next|2|',
+			'|first|1||last|2||previous|1||next|2|',
 			(new UI\AttainablePagination(
 				1,
 				0,
