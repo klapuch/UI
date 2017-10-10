@@ -136,12 +136,12 @@ final class AttainablePagination extends Tester\TestCase {
 		);
 	}
 
-	public function testRangeFromTo() {
+	public function testNamedRanges() {
 		Assert::same(
 			[
 				'first' => 1,
 				'prev' => 2,
-				2 => 3,
+				3 => 3,
 				'next' => 4,
 				'last' => 5,
 			],
