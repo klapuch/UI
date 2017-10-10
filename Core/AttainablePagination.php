@@ -27,20 +27,41 @@ final class AttainablePagination implements Pagination {
 	}
 
 	public function print(Output\Format $format): Output\Format {
-		$current = $this->current($this->current);
-		$last = $this->last($this->total);
-		return $format->with('first', self::BASE)
-			->with('last', $last)
-			->with('prev', max(self::BASE, $current - 1))
-			->with('next', min($last, $current + 1));
+		$range = $this->range();
+		return array_reduce(
+			array_filter(array_keys($this->range()), 'is_string'),
+			function(Output\Format $format, string $move) use ($range): Output\Format {
+				return $format->with($move, $range[$move]);
+			},
+			$format
+		);
 	}
 
 	public function range(): array {
-		return [self::BASE, $this->last($this->total)];
+		$moves = [
+			'first' => self::BASE,
+			'prev' => $this->previous($this->current($this->current)),
+			'last' => $this->last($this->total),
+			'next' => $this->next($this->current($this->current), $this->last($this->total)),
+		];
+		$range = array_intersect(
+			$moves,
+			range(self::BASE, $this->last($this->total))
+		) + array_diff(range(self::BASE, $this->last($this->total)), $moves);
+		asort($range);
+		return $range;
 	}
 
 	private function limit(int $perPage): int {
 		return min($this->defaultLimit, $perPage) ?: $this->defaultLimit;
+	}
+
+	private function next(int $current, int $last): int {
+		return min($last, $current + 1);
+	}
+
+	private function previous(int $current): int {
+		return max(self::BASE, $current - 1);
 	}
 
 	private function last(int $total): int {
