@@ -27,11 +27,11 @@ final class AttainablePagination implements Pagination {
 	}
 
 	public function print(Output\Format $format): Output\Format {
-		$range = $this->range();
+		$moves = $this->range();
 		return array_reduce(
 			array_filter(array_keys($this->range()), 'is_string'),
-			function(Output\Format $format, string $move) use ($range): Output\Format {
-				return $format->with($move, $range[$move]);
+			function(Output\Format $format, string $move) use ($moves): Output\Format {
+				return $format->with($move, $moves[$move]);
 			},
 			$format
 		);
@@ -41,8 +41,8 @@ final class AttainablePagination implements Pagination {
 		$moves = [
 			'first' => self::BASE,
 			'prev' => $this->previous($this->current($this->current)),
-			'last' => $this->last($this->total),
 			'next' => $this->next($this->current($this->current), $this->last($this->total)),
+			'last' => $this->last($this->total),
 		];
 		$range = array_intersect(
 			$moves,

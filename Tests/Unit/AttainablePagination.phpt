@@ -20,7 +20,7 @@ final class AttainablePagination extends Tester\TestCase {
 	 */
 	public function testCurrentOverTotalLimitFallingToLast() {
 		Assert::same(
-			'|first|1||prev|1||last|2||next|2|',
+			'|first|1||prev|1||next|2||last|2|',
 			(new UI\AttainablePagination(
 				9,
 				50,
@@ -31,7 +31,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testCurrentUnderBaseLimitFallingToFirst() {
 		Assert::same(
-			'|first|1||prev|1||last|2||next|2|',
+			'|first|1||prev|1||next|2||last|2|',
 			(new UI\AttainablePagination(
 				-3,
 				50,
@@ -42,7 +42,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testOversteppedLimitFallingEverythingToBegin() {
 		Assert::same(
-			'|first|1||prev|1||last|1||next|1|',
+			'|first|1||prev|1||next|1||last|1|',
 			(new UI\AttainablePagination(
 				1,
 				100,
@@ -65,7 +65,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testFirstPage() {
 		Assert::same(
-			'|first|1||prev|1||last|2||next|2|',
+			'|first|1||prev|1||next|2||last|2|',
 			(new UI\AttainablePagination(
 				1,
 				50,
@@ -79,7 +79,7 @@ final class AttainablePagination extends Tester\TestCase {
 	 */
 	public function testFirstPageOnEdge() {
 		Assert::same(
-			'|first|1||prev|1||last|1||next|1|',
+			'|first|1||prev|1||next|1||last|1|',
 			(new UI\AttainablePagination(
 				1,
 				50,
@@ -90,7 +90,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testLastPage() {
 		Assert::same(
-			'|first|1||prev|1||last|2||next|2|',
+			'|first|1||prev|1||next|2||last|2|',
 			(new UI\AttainablePagination(
 				1,
 				50,
@@ -104,7 +104,7 @@ final class AttainablePagination extends Tester\TestCase {
 	 */
 	public function testLastPageOnEdge() {
 		Assert::same(
-			'|first|1||prev|1||last|2||next|2|',
+			'|first|1||prev|1||next|2||last|2|',
 			(new UI\AttainablePagination(
 				2,
 				50,
@@ -126,7 +126,7 @@ final class AttainablePagination extends Tester\TestCase {
 
 	public function testUnrealLimitWithMaxLimitFallback() {
 		Assert::same(
-			'|first|1||prev|1||last|2||next|2|',
+			'|first|1||prev|1||next|2||last|2|',
 			(new UI\AttainablePagination(
 				1,
 				0,
